@@ -45,6 +45,6 @@ Performance evaluated using:
 
 ## ✍️ Author
 
-[Mohammed Abrar Hussain]
+Mohammed Abrar Hussain
 
 ---
