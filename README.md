@@ -36,7 +36,6 @@ Performance evaluated using:
 - Recall
 - F1 Score
 - Confusion Matrix
-- Cross-validation (CV)
 
 ## 📁 Files in This Repository
 
