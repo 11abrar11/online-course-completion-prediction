@@ -1,72 +1,50 @@
-## 🔧 Tools & Libraries
+# Online Course Completion Prediction
 
-- Python
-- Jupyter Notebook
-- *Poetry* for dependency management
-- pandas, numpy for data handling
-- matplotlib, seaborn for visualization
-- scikit-learn for preprocessing and ML models
-- xgboost for gradient boosting classifier
+This project aims to predict whether a student will complete an online course using a machine learning model trained on behavioral and demographic features.
 
----
+## 🔍 Problem Statement
 
-## 🔄 Workflow Summary
+The goal is to build a classification model that can predict the value of the `completed_course` column (binary: 0 or 1) based on various input features.
 
-### 1. Data Preprocessing
+## 🧰 Tech Stack
 
-- Loaded dataset using pandas
-- Identified and handled null values
-- Performed feature selection using correlation and Cramér's V
-- Applied one-hot encoding for categorical variables
-- Normalized features using StandardScaler
+- **Python**
+- **Jupyter Notebook**
+- **Pandas, NumPy** (for data manipulation)
+- **scikit-learn** (for ML models and preprocessing)
+- **XGBoost** (for advanced boosting-based model)
+- **Matplotlib / Seaborn** (for visualizations)
+- **Poetry** (for environment and dependency management)
 
-### 2. Feature Engineering
+## 📊 Data Preprocessing
 
-- Handled missing values (mean/mode imputation)
-- Converted categorical columns into numerical format
-- Final dataset with selected 9 features
+- Feature selection using correlation and categorical distribution analysis
+- Missing values handled using mean/mode imputation
+- Categorical variables encoded using One-Hot Encoding
+- Feature scaling using StandardScaler (Z-score normalization)
 
-### 3. Model Training
+## 🧠 Model Training
 
-Trained the following models:
-- *Logistic Regression*
-- *Random Forest*
-- *XGBoost*
+Three models were trained and compared:
+- Logistic Regression
+- Random Forest Classifier
+- XGBoost Classifier
 
-All models were evaluated using:
+Performance evaluated using:
 - Accuracy
 - Precision
 - Recall
-- F1-Score
+- F1 Score
 - Confusion Matrix
+- Cross-validation (CV)
 
-### 4. Evaluation
+## 📁 Files in This Repository
 
-Metrics were printed and visualized using seaborn heatmaps.
+- `notebooks/`: Contains Jupyter notebooks used for data exploration and training
 
----
 
-## ✅ Result
+## ✍️ Author
 
-All models were successfully trained. Evaluation metrics were printed for each. The model with the best performance can be further fine-tuned or deployed if needed.
-
----
-
-## 🚀 Future Work
-
-- Perform hyperparameter tuning using GridSearchCV
-- Save model using pickle or joblib
-- Deploy the model using Flask or FastAPI
+[Mohammed Abrar Hussain]
 
 ---
-
-## 🙋‍♂️ Author
-
-Mohammed Abrar Hussain  
-ML Engineering Beginner | Guided by Mentor
-
----
-
-## 📌 Note
-
-This project was built as part of a mentor-guided learning task using only Jupyter Notebook and standard ML libraries. No prior experience in ML or Python was assumed during the build.
