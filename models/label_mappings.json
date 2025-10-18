@@ -1,0 +1,32 @@
+{
+  "country": {
+    "Japan": 9,
+    "Kenya": 10,
+    "Brazil": 3,
+    "Nigeria": 12,
+    "India": 8,
+    "Chile": 5,
+    "Mexico": 11,
+    "USA": 18,
+    "France": 6,
+    "South Africa": 16,
+    "Germany": 7,
+    "Spain": 17,
+    "Argentina": 0,
+    "Canada": 4,
+    "Norway": 13,
+    "Bhutan": 2,
+    "Singapore": 15,
+    "Research_Base": 14,
+    "Atlantis": 1
+  },
+  "preferred_device": {
+    "mobile": 2,
+    "desktop": 1,
+    "console": 0,
+    "nan": 3,
+    "tablet": 6,
+    "smart_tv": 5,
+    "pager": 4
+  }
+}

@@ -1,162 +1,188 @@
-Online Course Completion Prediction
+Online Course Completion Prediction ML Pipeline
 
-This project predicts whether a student will complete an online course using a machine learning model trained on behavioral and demographic features.
-
-
----
-
-🔍 Problem Statement
-
-The goal is to build a classification model that predicts the completed_course column (binary: 0 or 1) based on student activity, engagement, and demographic data.
+An end-to-end machine learning pipeline to predict online course completion, featuring synchronized preprocessing, fixed categorical encoding, a production-ready FastAPI API, and Docker containerization for deployment.
 
 
 ---
 
-🧰 Tech Stack
+🎯 Project Overview
 
-Python 3.12
+This project predicts whether a student will complete an online course based on engagement metrics, study habits, and demographic features.
 
-Jupyter Notebook (for exploration, preprocessing, and model experimentation)
+Key Highlights:
 
-Pandas & NumPy (data manipulation)
+End-to-end ML pipeline: data preprocessing → model experimentation → training → inference → API service
 
-scikit-learn (preprocessing, model evaluation)
+Accuracy-driven model selection: XGBoost chosen as the best-performing model
 
-XGBoost (best-performing ML model)
+Fully synchronized preprocessing for training and inference
 
-Matplotlib & Seaborn (visualizations)
+Human-readable categorical encoding
 
-Poetry (environment and dependency management)
-
-FastAPI (REST API for model inference)
-
-Docker (containerization for deployment)
+Docker-ready for portable deployment
 
 
 
 ---
 
-📊 Data Preprocessing
-
-Feature selection using correlation matrices and categorical distribution analysis
-
-Missing values handled consistently across numerical and categorical features
-
-Categorical features encoded with human-readable mappings to maintain interpretability
-
-Feature scaling applied to numeric features for consistent model input
-
-
-
----
-
-🧠 Model Training
-
-Three models trained and compared:
-
-Logistic Regression
-
-Random Forest Classifier
-
-XGBoost Classifier
-
-
-Evaluation metrics: Accuracy (primary), Precision, Recall, F1 Score, Confusion Matrix
-
-XGBoost selected as best model based on highest accuracy
-
-Training script saves model, encoders, scaler, and feature order for reproducible inference
-
-
-
----
-
-⚡ FastAPI Service
-
-REST API endpoints:
-
-/ → Welcome message
-
-/health → Health check
-
-/model-info → Feature mappings and model info
-
-/predict → Make a prediction
-
-/predict-probabilities → Get probability scores
-
-
-Input validation ensures data integrity
-
-Swagger UI documentation available for interactive testing
-
-
-
----
-
-🗂️ Repository Structure
+🏗️ Project Structure
 
 ML_1/
-├── train_model.py              # Model training script
-├── inference_model.py          # Model inference class
+├── train_model.py              # Script to train XGBoost model with preprocessing
+├── inference_model.py          # Class for loading artifacts and making predictions
 ├── app/
-│   └── main.py                 # FastAPI application
+│   └── main.py                 # FastAPI application with prediction endpoints
 ├── data/                       # Raw and preprocessed datasets
-├── models/                     # Saved artifacts (model, scaler, encoders)
-├── notebooks/                  # Jupyter notebooks for analysis and training
+│   ├── online_course_completion.csv
+│   ├── preprocessed_online_course_data.csv
+│   ├── scaled_train_data.csv
+│   └── scaled_test_data.csv
+├── models/                     # Saved artifacts (model, scaler, encoders, mappings)
+│   ├── best_model.pkl
+│   ├── scaler.pkl
+│   ├── encoders.pkl
+│   ├── label_mappings.json
+│   └── feature_order.json
+├── notebooks/
+│   └── Final_File.ipynb        # Data exploration, correlation analysis, and model comparison
 ├── requirements.txt
-├── pyproject.toml              # Poetry dependencies
-├── Dockerfile                  # Multi-stage Dockerfile for production
-├── docker-compose.yml          # Optional Docker Compose
+├── pyproject.toml              # Poetry dependency management
+├── Dockerfile                  # Multi-stage Dockerfile for production deployment
+├── docker-compose.yml          # Optional Docker Compose for easier container management
 └── README.md
 
 
 ---
 
-🐳 Docker Containerization
+🛠️ Workflow
 
-Multi-stage Dockerfile creates a production-ready image with only necessary dependencies
+1️⃣ Data Preprocessing & Exploration
 
-Non-root user ensures security best practices
+Initial analysis, correlation, and feature selection done in the Jupyter notebook
 
-Container exposes port 8000 for API access
+Numerical features scaled, categorical features encoded with preserved mappings
 
-FastAPI runs inside container exactly as on local environment
-
-Docker provides portability, reproducibility, and easier deployment on any server or cloud platform
+Null values handled consistently to ensure model robustness
 
 
-Deployment Workflow:
+2️⃣ Model Training
 
-1. Build Docker image
+Three models trained and compared: Logistic Regression, Random Forest, XGBoost
+
+Best model selected based on accuracy (XGBoost)
+
+Training script saves all necessary artifacts for inference (model, scaler, encoders, feature order)
 
 
-2. Run container on any host or cloud service
+3️⃣ Inference
+
+InferenceModel class loads all artifacts to ensure consistent preprocessing
+
+Accepts new inputs, encodes categorical features, scales numeric features, and predicts completion
+
+Predictions can be decoded to human-readable labels
 
 
-3. API accessible via host port, with Swagger docs and health check
+4️⃣ FastAPI Service
+
+Production-ready API with endpoints:
+
+Root endpoint (/) for welcome message
+
+Health check (/health)
+
+Model info (/model-info)
+
+Prediction (/predict)
+
+Probability predictions (/predict-probabilities)
+
+
+Input validation ensures robust, reliable API interactions
+
+Swagger UI available for interactive API documentation
+
+
+5️⃣ Docker Containerization
+
+Multi-stage Dockerfile creates a lightweight, secure production image
+
+Dependencies installed in build stage, runtime image keeps only necessary packages
+
+Non-root user for security
+
+Port exposed for API access
+
+Containerization ensures portability and replicable environments
+
+
+> Docker enables running the API anywhere without worrying about system dependencies or Python version mismatches. For deployment, it can be run locally, on a cloud instance, or any container orchestration service.
 
 
 
 
 ---
 
-✅ Key Features
+🔍 Key Improvements & Solutions
 
-Fixed categorical encoding with JSON mappings for human-readable inference
+1. Fixed Categorical Encoding: Original category names preserved for interpretability
 
-Synchronized preprocessing between training and API inference
 
-Accuracy-driven model selection
+2. Synchronized Preprocessing: Training and inference pipelines fully consistent
 
-Production-ready FastAPI with input validation, error handling, and documentation
 
-Dockerized for portable, reproducible deployment
+3. Modular Design: Separate scripts for training, inference, and API
+
+
+4. Production API: FastAPI with validation, documentation, and error handling
+
+
+5. Artifact Management: All model components versioned and saved
+
+
+6. Docker-Ready: Multi-stage containerization ensures reproducible deployment
+
 
 
 
 ---
 
-✍️ Author
+🚀 Getting Started
 
-Mohammed Abrar Hussain
+Install dependencies:
+
+Using Poetry or pip
+
+
+Train the model:
+
+Run the training script; artifacts are saved automatically
+
+
+Test inference locally:
+
+Use the inference script with new sample inputs
+
+
+Start FastAPI server:
+
+Run locally to test endpoints and view Swagger documentation
+
+
+Deploy with Docker (optional):
+
+Build and run the container for a portable production-ready API
+
+
+
+---
+
+✅ Project Status
+
+Fully functional FastAPI service with predictions and probability outputs
+
+Synchronized preprocessing ensures reproducible results
+
+Categorical encoding issue resolved (human-readable labels)
+
+Docker-ready for deployment, cloud-ready for future hosting
